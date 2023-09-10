@@ -1187,7 +1187,7 @@ class Bot
         $conf = $this->getPacConf();
         switch ($name) {
             case 'letsencrypt':
-                $out[] = 'Установка сертификата\n';
+                $out[] = 'Установка сертификата';
                 $this->update($this->input['chat'], $this->input['message_id'], implode("\n", $out));
                 exec("certbot certonly --force-renew --preferred-chain 'ISRG Root X1' -n --agree-tos --email mail@{$conf['domain']} -d {$conf['domain']} --webroot -w /certs/ --logs-dir /logs 2>&1", $out, $code);
                 if ($code > 0) {
