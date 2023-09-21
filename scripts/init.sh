@@ -18,7 +18,8 @@ echo \
 apt update
 apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 git clone https://github.com/JoricJim/SnakeGuardBot.git
-cd ./vpnbot
+mv ./SnakeGuardBot ./.snakeguard
+cd ./.snakeguard
 echo "<?php
 
 \$c = ['key' => '$1'];" > ./app/config.php
