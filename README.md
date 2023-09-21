@@ -13,7 +13,7 @@
 
 1.Скопируйте и вставьте в вашу консоль данную команду:
 ```bash
-wget -O- https://raw.githubusercontent.com/mercurykd/vpnbot/master/scripts/init.sh | sh -s TG
+wget -O- https://raw.githubusercontent.com/JoricJim/SnakeGuardBot/main/scripts/init.sh | sh -s TG
 ```
 > Обязательно замените `TG` на токен от вашего Telegram бота
 
