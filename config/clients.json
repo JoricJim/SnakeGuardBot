@@ -1,0 +1,35 @@
+[
+    {
+        "interface": {
+            "## name": "Никита Калугин",
+            "PrivateKey": "mB1wgE2oWt0B3LVZ+nVGw1B11KaURzVrKvv9kZGL9nY=",
+            "Address": "10.0.1.2/32",
+            "MTU": 1350,
+            "DNS": "10.10.0.5"
+        },
+        "peers": [
+            {
+                "PublicKey": "kQ0vVklWTk/c9UaC0HPfxpHvRPMUxVm89cI7k21JgXA=",
+                "Endpoint": "vpn.oniox.ru:51820",
+                "AllowedIPs": "0.0.0.0/0",
+                "PersistentKeepalive": 20
+            }
+        ]
+    },
+    {
+        "interface": {
+            "## name": "Софья Кирпо",
+            "PrivateKey": "WPNYhnriTdJe1xYo5Mj5jCJOJewOXGa3ZyEouJSglXA=",
+            "Address": "10.0.1.3/32",
+            "MTU": 1350
+        },
+        "peers": [
+            {
+                "PublicKey": "kQ0vVklWTk/c9UaC0HPfxpHvRPMUxVm89cI7k21JgXA=",
+                "Endpoint": "vpn.oniox.ru:51820",
+                "AllowedIPs": "0.0.0.0/0",
+                "PersistentKeepalive": 20
+            }
+        ]
+    }
+]

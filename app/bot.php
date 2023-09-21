@@ -679,27 +679,27 @@ class Bot
         $items   = [
             'Y' => [
                 'diff' => 1970,
-                'sign' => 'y',
+                'sign' => ' л. ',
             ],
             'm' => [
                 'diff' => 1,
-                'sign' => 'mon',
+                'sign' => ' мес. ',
             ],
             'd' => [
                 'diff' => 1,
-                'sign' => 'd',
+                'sign' => ' д. ',
             ],
             'H' => [
                 'diff' => 0,
-                'sign' => 'h',
+                'sign' => ' ч. ',
             ],
             'i' => [
                 'diff' => 0,
-                'sign' => 'min',
+                'sign' => ' мин. ',
             ],
             's' => [
                 'diff' => 0,
-                'sign' => 's',
+                'sign' => ' с. ',
             ],
         ];
         foreach ($items as $k => $v) {
@@ -708,7 +708,7 @@ class Bot
                 break;
             }
         }
-        return trim($text) ?: '♾';
+        return trim($text) ?: 'Навсегда';
     }
 
     public function shutdownClient()
@@ -1221,7 +1221,7 @@ class Bot
             if (preg_match('~test is successful~', $u)) {
                 $out[] = $this->ssh("nginx -s reload 2>&1", 'ng');
                 $this->update($this->input['chat'], $this->input['message_id'], implode("\n", $out));
-                $out[] = 'Restart Adguard Home';
+                $out[] = 'Перезапуск AdGuard Home';
                 $this->update($this->input['chat'], $this->input['message_id'], implode("\n", $out));
                 $out[] = $this->stopAd();
                 $this->update($this->input['chat'], $this->input['message_id'], implode("\n", $out));
@@ -1434,7 +1434,7 @@ class Bot
 
     public function chpsswd($pass)
     {
-        $out[] = 'Restart Adguard Home';
+        $out[] = 'Перезапуск AdGuard Home';
         $this->update($this->input['chat'], $this->input['message_id'], implode("\n", $out));
         $out[] = $this->stopAd();
         $this->update($this->input['chat'], $this->input['message_id'], implode("\n", $out));
@@ -1452,7 +1452,7 @@ class Bot
 
     public function adguardreset()
     {
-        $out[] = 'Restart Adguard Home';
+        $out[] = 'Перезапуск AdGuard Home';
         $this->update($this->input['chat'], $this->input['message_id'], implode("\n", $out));
         $out[] = $this->stopAd();
         $this->update($this->input['chat'], $this->input['message_id'], implode("\n", $out));
@@ -1508,7 +1508,7 @@ class Bot
 
     public function upstream($url)
     {
-        $out[] = 'Restart Adguard Home';
+        $out[] = 'Перезапуск AdGuard Home';
         $this->update($this->input['chat'], $this->input['message_id'], implode("\n", $out));
         $out[] = $this->stopAd();
         $this->update($this->input['chat'], $this->input['message_id'], implode("\n", $out));
@@ -1523,7 +1523,7 @@ class Bot
 
     public function delupstream($k)
     {
-        $out[] = 'Restart Adguard Home';
+        $out[] = 'Перезапуск AdGuard Home';
         $this->update($this->input['chat'], $this->input['message_id'], implode("\n", $out));
         $this->stopAd();
         $c = yaml_parse_file('/config/adguard/AdGuardHome.yaml');
@@ -1826,27 +1826,26 @@ class Bot
                 $t = [
                     'name'    => $this->getName($v),
                     'time'    => $this->getTime(strtotime($v['## time'])),
-                    'status'  => $v['online'] == 'off' ? 'Отключен' : $this->i18n($v['online'] ? 'on' : 'off'),
+                    'status'  => $v['online'] == 'off' ? ' Выключен' : $this->i18n($v['online'] ? 'on' : ' Включен'),
                     'traffic' => $tr,
                 ];
                 $pad = [
                     'name'    => max(mb_strlen($t['name']), $pad['name']),
-                    'time'    => max($t['time'] == 'Бесконечно' ? 4 : mb_strlen($t['time']), $pad['time']),
+                    'time'    => max($t['time'] == 'Бесконечно' ? 4 : mb_strlen($t[' time']), $pad['time']),
                     'status'  => max(mb_strlen($t['status']), $pad['status']),
-                    'traffic' => max(mb_strlen($t['traffic']), $pad['traffic']),
                 ];
                 $peers[] = $t;
             }
             foreach ($peers as $k => $v) {
-                $text[] = implode('', [
-                    $this->pad($v['name'], $pad['name'] - mb_strlen($v['name'])),
+                $text[] = implode(' -', [
+                    $this->pad($v['name'], $pad[' name'] - mb_strlen($v['name'])),
                     $this->pad(" {$v['time']}", $pad['time'] - mb_strlen($v['time'])),
                     $this->pad($v['status'], $pad['status'] - mb_strlen($v['status'])),
-                    $this->pad(" {$v['traffic']}", $pad['traffic'] - mb_strlen($v['traffic'])),
+
                 ]);
             }
         }
-        $text = "Меню - WireGuard";
+        $text = "Меню - Wireguard\n\nСписок пользователей:\n" . implode(PHP_EOL, $text ?: []);
         $data[] = [
             [
                 'text'          =>  $this->i18n('update status'),

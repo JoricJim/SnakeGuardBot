@@ -1,0 +1,68 @@
+{
+    "inbounds": [
+        {
+            "port": 443,
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "email": "user1@myserver",
+                        "flow": "xtls-rprx-vision",
+                        "id": "59e1d1ce-4f88-41be-b028-fa59075178f0"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "sniffing": {
+                "destOverride": [
+                    "http",
+                    "tls"
+                ],
+                "enabled": true
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "realitySettings": {
+                    "dest": "www.microsoft.com:443",
+                    "maxClientVer": "",
+                    "maxTimeDiff": 0,
+                    "minClientVer": "",
+                    "privateKey": "KHHv_5EIiUXyfPm5IoOAxcIJgxX2-8QPSMcZhVH9iF0",
+                    "serverNames": [
+                        "www.microsoft.com"
+                    ],
+                    "shortIds": [
+                        "8a310cbe642ae396"
+                    ],
+                    "show": false,
+                    "xver": 0
+                },
+                "tcpSettings": {
+                    "acceptProxyProtocol": true
+                },
+                "sockopt": {
+                    "acceptProxyProtocol": true
+                },
+                "security": "reality"
+            },
+            "tag": "vless_tls"
+        }
+    ],
+    "log": {
+        "loglevel": "info"
+    },
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "block"
+        }
+    ],
+    "routing": {
+        "domainStrategy": "AsIs",
+        "rules": []
+    }
+}
