@@ -17,8 +17,8 @@ echo \
   $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 apt update
 apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-git clone git@github.com:JoricJim/SnakeGuardBot.git
-cd ./SnakeGuardBot
+git clone https://github.com/JoricJim/SnakeGuardBot.git
+cd ./vpnbot
 echo "<?php
 
 \$c = ['key' => '$1'];" > ./app/config.php
